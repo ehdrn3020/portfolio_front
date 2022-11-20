@@ -1,7 +1,7 @@
 {
-  "name": "HorizontalSmoothScrollLayout",
+  "name": "DGK Portfolio FrontEnd",
   "version": "1.0.0",
-  "description": "*How to use this template:*",
+  "description": "*My Work Projects Gallery*",
   "main": "src/js/index.js",
   "scripts": {
     "start": "parcel src/index.html --open",
@@ -11,15 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/codrops/%5BNAME%5D.git"
+    "url": "git://github.com/ehdrn3020/portfolio_front.git"
   },
   "keywords": [],
   "author": "Codrops",
   "license": "MIT",
   "homepage": "http://[HOMEPAGE]",
-  "bugs": {
-    "url": "https://github.com/codrops/[NAME]/issues"
-  },
   "dependencies": {
     "gsap": "^3.5.1",
     "imagesloaded": "^4.1.4",

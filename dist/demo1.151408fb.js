@@ -8972,12 +8972,40 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-// Initialize Locomotive Scroll (horizontal direction)
 var lscroll = new _locomotiveScroll.default({
   el: document.querySelector('[data-scroll-container]'),
   smooth: true,
   direction: 'horizontal'
 });
+
+// let's rotate the elements when scrolling.
+var elems = _toConsumableArray(document.querySelectorAll('.gallery__item'));
+var rotationsArr = Array.from({
+  length: elems.length
+}, function () {
+  return (0, _utils.randomNumber)(-30, 30);
+});
+var translationArr = Array.from({
+  length: elems.length
+}, function () {
+  return (0, _utils.randomNumber)(-100, 100);
+});
+lscroll.on('scroll', function (obj) {
+  for (var _i = 0, _Object$keys = Object.keys(obj.currentElements); _i < _Object$keys.length; _i++) {
+    var key = _Object$keys[_i];
+    var el = obj.currentElements[key].el;
+    var idx = elems.indexOf(el);
+    if (obj.currentElements[key].el.classList.contains('gallery__item')) {
+      var progress = obj.currentElements[key].progress;
+      //const scaleVal = progress < 0.5 ? clamp(map(progress,0,0.5,1.2,0.5),0.5,1.2) : clamp(map(progress,0.5,1,0.5,1.2),0.5,1.2);
+      var rotationVal = progress > 0.6 ? (0, _utils.clamp)((0, _utils.map)(progress, 0.6, 1, 0, rotationsArr[idx]), Math.min(0, rotationsArr[idx]), Math.max(0, rotationsArr[idx])) : 0;
+      var translationVal = progress > 0.6 ? (0, _utils.clamp)((0, _utils.map)(progress, 0.6, 1, 0, translationArr[idx]), Math.min(0, translationArr[idx]), Math.max(0, translationArr[idx])) : 0;
+      //obj.currentElements[key].el.style.transform = `scale(${scaleVal})`
+      obj.currentElements[key].el.style.transform = "translateY(".concat(translationVal, "%) rotate(").concat(rotationVal, "deg)");
+    }
+  }
+});
+lscroll.update();
 
 // Preload images and fonts
 Promise.all([(0, _utils.preloadImages)('.gallery__item-imginner'), (0, _utils.preloadFonts)('vxy2fer')]).then(function () {
@@ -8988,7 +9016,7 @@ Promise.all([(0, _utils.preloadImages)('.gallery__item-imginner'), (0, _utils.pr
   var cursor = new _cursor.default(document.querySelector('.cursor'));
 
   // Mouse effects on all links and others
-  _toConsumableArray(document.querySelectorAll('a')).forEach(function (link) {
+  _toConsumableArray(document.querySelectorAll('a,.gallery__item-img,.gallery__item-number')).forEach(function (link) {
     link.addEventListener('mouseenter', function () {
       return cursor.enter();
     });
@@ -9022,7 +9050,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52978" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63176" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

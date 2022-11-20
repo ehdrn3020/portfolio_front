@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Horizontal Smooth Scroll Layout | Demo 1 | Codrops</title>
+		<title>PortFolio | React JS | DGK</title>
 		<meta name="description" content="A horizontal smooth scroll layout powered by Locomotive Scroll" />
 		<meta name="keywords" content="locomotive scroll, smooth scroll, horizontal, layout, web design, javascript, css" />
 		<meta name="author" content="Codrops" />
@@ -16,27 +16,27 @@
 	</head>
 	<body class="demo-1 loading">
 		<div class="frame"><!-- don't put fixed elements into the scroll container! -->
-			<h1 class="frame__title">Horizontal Smooth Scroll Layout <br/> using <a href="https://locomotivemtl.github.io/locomotive-scroll/">Locomotive Scroll</a></h1>
+			<h1 class="frame__title">Developer DGK'S PortFolio <br/> using <a href="https://github.com/ehdrn3020/ehdrn3020/" target="_blank">skill stacks</a></h1>
 			<div class="frame__demos">
-				<a class="frame__demo frame__demo--current" href="index.html">Demo__01</a>
-				<a class="frame__demo" href="index2.html">Demo__02</a>
-				<a class="frame__demo" href="index3.html">Demo__03</a>
-				<a class="frame__demo" href="index4.html">Demo__04</a>
-				<a class="frame__demo" href="index5.html">Demo__05</a>
+				<a class="frame__demo frame__demo--current" href="index.html">React_JS</a>
+				<a class="frame__demo" href="index5.html">Vanilla_JS</a>
+				<a class="frame__demo" href="index2.html">TypeScript</a>
+				<a class="frame__demo" href="index4.html">Demo_SITES</a>
+				<a class="frame__demo" href="index3.html">Gallery</a>
 			</div>
 			<div class="frame__links">
-				<a href="https://tympanus.net/Development/ImageStackGrid/">Previous demo</a>
-				<a href="https://tympanus.net/codrops/?p=52157">Article</a>
-				<a href="https://github.com/codrops/HorizontalSmoothScrollLayout/">GitHub</a>
+				<a href="./doc/2023_이력서_경력기술서.pdf" target="_blank">Resume</a>
+				<a href="https://github.com/ehdrn3020/" target="_blank">GitHub</a>
 			</div>
 		</div>
 		<main data-scroll-container>
 			<div class="content">
-				<div class="gallery">
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/1.jpg)"></div></div>
+				<div class="gallery" id="gallery">
+					<div class="gallery__text"><span class="gallery__text-inner" data-scroll data-scroll-speed="3" data-scroll-direction="vertical">draga</span><span data-scroll data-scroll-speed="-4" data-scroll-direction="vertical" class="gallery__text-inner">armor</span></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1">
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/12.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll data-scroll-speed="1">Funambulist</h2>
+							<h2 class="gallery__item-title">Funambulist</h2>
 							<span class="gallery__item-number">01</span>
 							<p class="gallery__item-tags">
 								<span>#house</span>
@@ -46,10 +46,10 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/2.jpg)"></div></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1" >
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/11.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll  data-scroll-speed="1">Omophagy</h2>
+							<h2 class="gallery__item-title">Omophagy</h2>
 							<span class="gallery__item-number">02</span>
 							<p class="gallery__item-tags">
 								<span>#love</span>
@@ -59,10 +59,10 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/3.jpg)"></div></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1" >
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/10.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll  data-scroll-speed="1">Conniption</h2>
+							<h2 class="gallery__item-title">Conniption</h2>
 							<span class="gallery__item-number">03</span>
 							<p class="gallery__item-tags">
 								<span>#hike</span>
@@ -72,10 +72,10 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/4.jpg)"></div></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1">
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/9.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll  data-scroll-speed="1">Xenology</h2>
+							<h2 class="gallery__item-title">Xenology</h2>
 							<span class="gallery__item-number">04</span>
 							<p class="gallery__item-tags">
 								<span>#free</span>
@@ -85,11 +85,10 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<div class="gallery__text"><span class="gallery__text-inner" data-scroll data-scroll-speed="3">Pollex</span><span data-scroll data-scroll-speed="1" class="gallery__text-inner">Mallam</span></div>
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/5.jpg)"></div></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1"-target="#gallery" data-scroll data-scroll-speed="1"-speed="1">
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/8.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll  data-scroll-speed="1">Lycanthropy</h2>
+							<h2 class="gallery__item-title">Lycanthropy</h2>
 							<span class="gallery__item-number">05</span>
 							<p class="gallery__item-tags">
 								<span>#cloud</span>
@@ -99,10 +98,10 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/6.jpg)"></div></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1"-speed="2.5">
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/7.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll  data-scroll-speed="1">Mudlark</h2>
+							<h2 class="gallery__item-title">Mudlark</h2>
 							<span class="gallery__item-number">06</span>
 							<p class="gallery__item-tags">
 								<span>#tent</span>
@@ -112,10 +111,10 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/7.jpg)"></div></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1"-speed="0.5">
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/6.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll  data-scroll-speed="1">Illywhacker</h2>
+							<h2 class="gallery__item-title">Illywhacker</h2>
 							<span class="gallery__item-number">07</span>
 							<p class="gallery__item-tags">
 								<span>#water</span>
@@ -125,10 +124,10 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/8.jpg)"></div></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1"-speed="2">
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/5.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll  data-scroll-speed="1">Disenthral</h2>
+							<h2 class="gallery__item-title">Disenthral</h2>
 							<span class="gallery__item-number">08</span>
 							<p class="gallery__item-tags">
 								<span>#night</span>
@@ -138,11 +137,10 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<div class="gallery__text"><span class="gallery__text-inner" data-scroll data-scroll-speed="1">Cacoe</span><span data-scroll data-scroll-speed="3" class="gallery__text-inner">Dupis</span></div>
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/9.jpg)"></div></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1"-speed="1">
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/4.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll  data-scroll-speed="1">Abaya</h2>
+							<h2 class="gallery__item-title">Abaya</h2>
 							<span class="gallery__item-number">09</span>
 							<p class="gallery__item-tags">
 								<span>#sun</span>
@@ -152,10 +150,10 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/10.jpg)"></div></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1"-speed="0.5">
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/3.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll  data-scroll-speed="1">Hallux</h2>
+							<h2 class="gallery__item-title">Hallux</h2>
 							<span class="gallery__item-number">10</span>
 							<p class="gallery__item-tags">
 								<span>#vital</span>
@@ -165,10 +163,10 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/11.jpg)"></div></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1"-speed="2.5">
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/2.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll  data-scroll-speed="1">Lablab</h2>
+							<h2 class="gallery__item-title">Lablab</h2>
 							<span class="gallery__item-number">11</span>
 							<p class="gallery__item-tags">
 								<span>#cover</span>
@@ -178,10 +176,10 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<figure class="gallery__item">
-						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/12.jpg)"></div></div>
+					<figure class="gallery__item" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1" data-scroll data-scroll-speed="1"-speed="2">
+						<div class="gallery__item-img"><div class="gallery__item-imginner" style="background-image: url(img/demo1/1.jpg)"></div></div>
 						<figcaption class="gallery__item-caption">
-							<h2 class="gallery__item-title" data-scroll  data-scroll-speed="1">Momisom</h2>
+							<h2 class="gallery__item-title">Momisom</h2>
 							<span class="gallery__item-number">12</span>
 							<p class="gallery__item-tags">
 								<span>#sad</span>
@@ -191,7 +189,7 @@
 							<a class="gallery__item-link">explore</a>
 						</figcaption>
 					</figure>
-					<div class="gallery__text"><span class="gallery__text-inner" data-scroll data-scroll-speed="4">Chad</span><span data-scroll data-scroll-speed="1" class="gallery__text-inner">Chiliad</span></div>
+					<div class="gallery__text"><span class="gallery__text-inner" data-scroll data-scroll-speed="-4" data-scroll-direction="vertical">Hexed</span><span data-scroll data-scroll-speed="3" data-scroll-direction="vertical" class="gallery__text-inner">kambu</span></div>
 				</div>
 			</div>
 		</main>
