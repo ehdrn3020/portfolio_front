@@ -1,15 +1,15 @@
 body {
 	--color-text: #4a525e;
 	--color-bg: #121a27;
-	--color-link: #b2366f;
+	--color-link: #54d7e4;
 	--color-link-hover: #fff;
 	--color-gallery-title: #4a525e;
 	--color-gallery-number: #54d7e4;
 	--color-gallery-link: #fff;
-	--color-gallery-link-bg: #e95499;
-	--color-gallery-link-hover: #e95499;
+	--color-gallery-link-bg: #5481e9;
+	--color-gallery-link-hover: #5481e9;
 	--color-gallery-link-bg-hover: #fff;
-	--color-gallery-text: #e95499;
+	--color-gallery-text: #5481e9;
 	--cursor-stroke: none;
 	--cursor-fill: #79e2e6;
 	--cursor-stroke-width: 1px;
@@ -119,7 +119,7 @@ body {
 }
 
 .gallery__text {
-	font-size: 20vw;
+	font-size: 15vw;
 	line-height: 0.8;
 	margin: 0 10vw 0 14vw;
 	text-transform: lowercase;
