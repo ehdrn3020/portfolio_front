@@ -1,5 +1,5 @@
-import {preloadImages, preloadFonts, clamp, map, randomNumber} from '../utils';
-import Cursor from '../cursor';
+import {preloadImages, preloadFonts, clamp, map, randomNumber} from 'src/js/utils';
+import Cursor from 'src/js/cursor';
 import LocomotiveScroll from 'locomotive-scroll';
 
 const lscroll = new LocomotiveScroll({

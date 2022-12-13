@@ -4,4 +4,3 @@
 /.cache
 package-lock.json
 /dist
-/src/doc
