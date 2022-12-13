@@ -7,7 +7,9 @@
     "start": "parcel src/index.html --open",
     "clean": "rm -rf dist/*",
     "build:parcel": "parcel build src/index.html --no-content-hash --no-minify --no-source-maps --public-url ./",
-    "build": "npm run clean && npm run build:parcel"
+    "build": "npm run clean && npm run build:parcel",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -18,9 +20,11 @@
   "license": "MIT",
   "homepage": "http://[HOMEPAGE]",
   "dependencies": {
+    "gh-pages": "^4.0.0",
     "gsap": "^3.5.1",
     "imagesloaded": "^4.1.4",
     "locomotive-scroll": "^4.0.6",
     "parcel-bundler": "^1.12.4"
-  }
+  },
+  "homepage": "https://ehdrn3020.github.io/portfolio_front/"
 }
