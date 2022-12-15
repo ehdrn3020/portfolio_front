@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "*My Work Projects Gallery*",
   "main": "src/js/demo1/index.js",
+  "type" : "module",
   "scripts": {
     "start": "parcel index.html --open",
     "clean": "rm -rf dist/*",
