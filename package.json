@@ -2,6 +2,7 @@
   "name": "DGK Portfolio FrontEnd",
   "version": "1.0.0",
   "description": "*My Work Projects Gallery*",
+  "type": "module",
   "main": "src/js/index.js",
   "scripts": {
     "start": "parcel index.html --open",
