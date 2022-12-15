@@ -1,12 +1,12 @@
 import {preloadImages, preloadFonts, clamp, map, randomNumber} from '../utils';
 import Cursor from '../cursor';
-import LocomotiveScroll from 'locomotive-scroll';
+// import LocomotiveScroll from 'locomotive-scroll';
 
-const lscroll = new LocomotiveScroll({
-    el: document.querySelector('[data-scroll-container]'),
-    smooth: true,
-    direction: 'horizontal'
-});
+// const lscroll = new LocomotiveScroll({
+//     el: document.querySelector('[data-scroll-container]'),
+//     smooth: true,
+//     direction: 'horizontal'
+// });
 
 // let's rotate the elements when scrolling.
 const elems = [...document.querySelectorAll('.gallery__item')]
