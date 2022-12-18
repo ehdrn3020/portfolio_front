@@ -1,6 +1,8 @@
-import {preloadImages, preloadFonts, clamp, map, randomNumber} from '../utils';
-import Cursor from '../cursor';
+import {preloadImages, preloadFonts, clamp, map, randomNumber} from 'utils';
+import Cursor from 'cursor';
 import LocomotiveScroll from 'locomotive-scroll';
+
+//utils, cursor 다 js파일에 박아버리자 or require를 쓰자
 
 const lscroll = new LocomotiveScroll({
     el: document.querySelector('[data-scroll-container]'),
