@@ -1,12 +1,13 @@
 // import {preloadImages, preloadFonts, clamp, map, randomNumber} from '../utils';
 // import Cursor from '../cursor';
-import LocomotiveScroll from 'locomotive-scroll';
+// import LocomotiveScroll from 'locomotive-scroll';
 
 //utils, cursor 다 js파일에 박아버리자 or require를 쓰자
 const utils = require('../utils');
 const cursors = require('../cursor');
+const locomotive_scroll = require('locomotive-scroll');
 
-const lscroll = new LocomotiveScroll({
+const lscroll = new locomotive_scroll.default({
     el: document.querySelector('[data-scroll-container]'),
     smooth: true,
     direction: 'horizontal'
