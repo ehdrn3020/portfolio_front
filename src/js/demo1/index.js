@@ -1,5 +1,5 @@
-import {preloadImages, preloadFonts, clamp, map, randomNumber} from '../utils.mjs';
-import Cursor from '../cursor.mjs';
+import {preloadImages, preloadFonts, clamp, map, randomNumber} from '../utils.js';
+import Cursor from '../cursor.js';
 import LocomotiveScroll from 'locomotive-scroll';
 
 //utils, cursor 다 js파일에 박아버리자 or require를 쓰자
