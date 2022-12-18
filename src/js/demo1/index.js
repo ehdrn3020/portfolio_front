@@ -1,5 +1,5 @@
 // import { gsap } from 'gsap/all';
-import { LocomotiveScroll } from 'locomotive-scroll';
+import LocomotiveScroll from '../../../node_modules/locomotive-scroll/src/locomotive-scroll';
 
 /* utils */
 const imagesLoaded = require('imagesloaded');
