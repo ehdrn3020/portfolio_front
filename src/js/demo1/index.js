@@ -1,4 +1,4 @@
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 import LocomotiveScroll from 'locomotive-scroll';
 
 /* utils */
