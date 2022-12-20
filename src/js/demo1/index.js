@@ -1,6 +1,6 @@
 import {preloadImages, preloadFonts, clamp, map, randomNumber} from '../utils';
 import Cursor from '../cursor';
-import LocomotiveScroll from '../../../node_modules/locomotive-scroll';
+import LocomotiveScroll from 'locomotive-scroll';
 
 const lscroll = new LocomotiveScroll({
     el: document.querySelector('[data-scroll-container]'),
