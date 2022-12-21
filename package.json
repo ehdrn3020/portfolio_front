@@ -9,7 +9,7 @@
     "build:parcel": "parcel build index.html --no-content-hash --no-minify --no-source-maps --public-url ./",
     "build": "npm run clean && npm run build:parcel",
     "predeploy": "npm run build",
-    "deploy": "npm run build && gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
