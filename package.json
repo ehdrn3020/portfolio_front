@@ -5,11 +5,11 @@
   "main": "src/js/demo1/index.js",
   "scripts": {
     "start": "parcel index.html --open",
-    "clean": "rm -rf dist/*",
+    "clean": "del dist/*",
     "build:parcel": "parcel build index.html --no-content-hash --no-minify --no-source-maps --public-url ./",
     "build": "npm run clean && npm run build:parcel",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
