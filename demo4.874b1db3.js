@@ -623,27 +623,23 @@ exports.randomNumber = exports.preloadImages = exports.preloadFonts = exports.ma
 var imagesLoaded = require('imagesloaded');
 
 // Map number x from range [a, b] to [c, d]
-var map = function map(x, a, b, c, d) {
+var map = exports.map = function map(x, a, b, c, d) {
   return (x - a) * (d - c) / (b - a) + c;
 };
 
 // Linear interpolation
-exports.map = map;
-var lerp = function lerp(a, b, n) {
+var lerp = exports.lerp = function lerp(a, b, n) {
   return (1 - n) * a + n * b;
 };
-exports.lerp = lerp;
-var clamp = function clamp(num, min, max) {
+var clamp = exports.clamp = function clamp(num, min, max) {
   return num <= min ? min : num >= max ? max : num;
 };
-exports.clamp = clamp;
-var randomNumber = function randomNumber(min, max) {
+var randomNumber = exports.randomNumber = function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 // Gets the mouse position
-exports.randomNumber = randomNumber;
-var getMousePos = function getMousePos(e) {
+var getMousePos = exports.getMousePos = function getMousePos(e) {
   return {
     x: e.clientX,
     y: e.clientY
@@ -651,8 +647,7 @@ var getMousePos = function getMousePos(e) {
 };
 
 // Preload images
-exports.getMousePos = getMousePos;
-var preloadImages = function preloadImages() {
+var preloadImages = exports.preloadImages = function preloadImages() {
   var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'img';
   return new Promise(function (resolve) {
     imagesLoaded(document.querySelectorAll(selector), {
@@ -662,8 +657,7 @@ var preloadImages = function preloadImages() {
 };
 
 // Preload images
-exports.preloadImages = preloadImages;
-var preloadFonts = function preloadFonts(id) {
+var preloadFonts = exports.preloadFonts = function preloadFonts(id) {
   return new Promise(function (resolve) {
     WebFont.load({
       typekit: {
@@ -673,7 +667,6 @@ var preloadFonts = function preloadFonts(id) {
     });
   });
 };
-exports.preloadFonts = preloadFonts;
 },{"imagesloaded":"ffUI"}],"P74P":[function(require,module,exports) {
 "use strict";
 
@@ -694,17 +687,17 @@ function _inheritsLoose(subClass, superClass) {
 }
 
 /*!
- * GSAP 3.12.2
- * https://greensock.com
+ * GSAP 3.12.5
+ * https://gsap.com
  *
- * @license Copyright 2008-2023, GreenSock. All rights reserved.
- * Subject to the terms at https://greensock.com/standard-license or for
- * Club GreenSock members, the agreement issued with that membership.
+ * @license Copyright 2008-2024, GreenSock. All rights reserved.
+ * Subject to the terms at https://gsap.com/standard-license or for
+ * Club GSAP members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
 */
 
 /* eslint-disable */
-var _config = {
+var _config = exports._config = {
     autoSleep: 120,
     force3D: "auto",
     nullTargetWarn: 1,
@@ -728,7 +721,7 @@ var _config = {
   _sqrt = Math.sqrt,
   _cos = Math.cos,
   _sin = Math.sin,
-  _isString = function _isString(value) {
+  _isString = exports._isString = function _isString(value) {
     return typeof value === "string";
   },
   _isFunction = function _isFunction(value) {
@@ -737,7 +730,7 @@ var _config = {
   _isNumber = function _isNumber(value) {
     return typeof value === "number";
   },
-  _isUndefined = function _isUndefined(value) {
+  _isUndefined = exports._isUndefined = function _isUndefined(value) {
     return typeof value === "undefined";
   },
   _isObject = function _isObject(value) {
@@ -757,12 +750,12 @@ var _config = {
   _isArray = Array.isArray,
   _strictNumExp = /(?:-?\.?\d|\.)+/gi,
   //only numbers (including negatives and decimals) but NOT relative values.
-  _numExp = /[-+=.]*\d+[.e\-+]*\d*[e\-+]*\d*/g,
+  _numExp = exports._numExp = /[-+=.]*\d+[.e\-+]*\d*[e\-+]*\d*/g,
   //finds any numbers, including ones that start with += or -=, negative numbers, and ones in scientific notation like 1e-8.
-  _numWithUnitExp = /[-+=.]*\d+[.e-]*\d*[a-z%]*/g,
+  _numWithUnitExp = exports._numWithUnitExp = /[-+=.]*\d+[.e-]*\d*[a-z%]*/g,
   _complexStringNumExp = /[-+=.]*\d+\.?\d*(?:e-|e\+)?\d*/gi,
   //duplicate so that while we're looping through matches from exec(), it doesn't contaminate the lastIndex of _numExp which we use to search for colors too.
-  _relExp = /[+-]=-?[.\d]+/,
+  _relExp = exports._relExp = /[+-]=-?[.\d]+/,
   _delimitedValueExp = /[^,'"\[\]\s]+/gi,
   // previously /[#\-+.]*\b[a-z\d\-=+%.]+/gi but didn't catch special characters.
   _unitExp = /^[+\-=e\s\d]*\d+[.\d]*([a-z]*|%)\s*$/i,
@@ -776,7 +769,7 @@ var _config = {
   _install = function _install(scope) {
     return (_installScope = _merge(scope, _globals)) && gsap;
   },
-  _missingPlugin = function _missingPlugin(property, value) {
+  _missingPlugin = exports._missingPlugin = function _missingPlugin(property, value) {
     return console.warn("Invalid property", property, "set to", value, "Missing plugin? gsap.registerPlugin()");
   },
   _warn = function _warn(message, suppress) {
@@ -804,7 +797,7 @@ var _config = {
   _lazyTweens = [],
   _lazyLookup = {},
   _lastRenderedFrame,
-  _plugins = {},
+  _plugins = exports._plugins = {},
   _effects = {},
   _nextGCFrame = 30,
   _harnessPlugins = [],
@@ -826,24 +819,24 @@ var _config = {
     }
     return targets;
   },
-  _getCache = function _getCache(target) {
+  _getCache = exports._getCache = function _getCache(target) {
     return target._gsap || _harness(toArray(target))[0]._gsap;
   },
-  _getProperty = function _getProperty(target, property, v) {
+  _getProperty = exports._getProperty = function _getProperty(target, property, v) {
     return (v = target[property]) && _isFunction(v) ? target[property]() : _isUndefined(v) && target.getAttribute && target.getAttribute(property) || v;
   },
-  _forEachName = function _forEachName(names, func) {
+  _forEachName = exports._forEachName = function _forEachName(names, func) {
     return (names = names.split(",")).forEach(func) || names;
   },
   //split a comma-delimited list of names into an array, then run a forEach() function and return the split array (this is just a way to consolidate/shorten some code).
-  _round = function _round(value) {
+  _round = exports._round = function _round(value) {
     return Math.round(value * 100000) / 100000 || 0;
   },
   _roundPrecise = function _roundPrecise(value) {
     return Math.round(value * 10000000) / 10000000 || 0;
   },
   // increased precision mostly for timing values.
-  _parseRelative = function _parseRelative(start, value) {
+  _parseRelative = exports._parseRelative = function _parseRelative(start, value) {
     var operator = value.charAt(0),
       end = parseFloat(value.substr(2));
     start = parseFloat(start);
@@ -880,7 +873,7 @@ var _config = {
   _passThrough = function _passThrough(p) {
     return p;
   },
-  _setDefaults = function _setDefaults(obj, defaults) {
+  _setDefaults = exports._setDefaults = function _setDefaults(obj, defaults) {
     for (var p in defaults) {
       p in obj || (obj[p] = defaults[p]);
     }
@@ -961,7 +954,7 @@ var _config = {
     child.parent = child._dp = parent;
     return child;
   },
-  _removeLinkedListItem = function _removeLinkedListItem(parent, child, firstProp, lastProp) {
+  _removeLinkedListItem = exports._removeLinkedListItem = function _removeLinkedListItem(parent, child, firstProp, lastProp) {
     if (firstProp === void 0) {
       firstProp = "_first";
     }
@@ -1035,7 +1028,6 @@ var _config = {
       _setEnd(animation);
       parent._dirty || _uncache(parent, animation); //for performance improvement. If the parent's cache is already dirty, it already took care of marking the ancestors as dirty too, so skip the function call here.
     }
-
     return animation;
   },
   /*
@@ -1246,7 +1238,6 @@ var _config = {
       vars.immediateRender = _isNotFalse(irVars.immediateRender);
       type < 2 ? vars.runBackwards = 1 : vars.startAt = params[varsIndex - 1]; // "from" vars
     }
-
     return new Tween(params[0], vars, params[varsIndex + 1]);
   },
   _conditionalReturn = function _conditionalReturn(value, func) {
@@ -1255,11 +1246,11 @@ var _config = {
   _clamp = function _clamp(min, max, value) {
     return value < min ? min : value > max ? max : value;
   },
-  getUnit = function getUnit(value, v) {
+  getUnit = exports.getUnit = function getUnit(value, v) {
     return !_isString(value) || !(v = _unitExp.exec(value)) ? "" : v[1];
   },
   // note: protect against padded numbers as strings, like "100.100". That shouldn't return "00" as the unit. If it's numeric, return no unit.
-  clamp = function clamp(min, max, value) {
+  clamp = exports.clamp = function clamp(min, max, value) {
     return _conditionalReturn(value, function (v) {
       return _clamp(min, max, v);
     });
@@ -1278,24 +1269,24 @@ var _config = {
     }) || accumulator;
   },
   //takes any value and returns an array. If it's a string (and leaveStrings isn't true), it'll use document.querySelectorAll() and convert that to an array. It'll also accept iterables like jQuery objects.
-  toArray = function toArray(value, scope, leaveStrings) {
+  toArray = exports.toArray = function toArray(value, scope, leaveStrings) {
     return _context && !scope && _context.selector ? _context.selector(value) : _isString(value) && !leaveStrings && (_coreInitted || !_wake()) ? _slice.call((scope || _doc).querySelectorAll(value), 0) : _isArray(value) ? _flatten(value, leaveStrings) : _isArrayLike(value) ? _slice.call(value, 0) : value ? [value] : [];
   },
-  selector = function selector(value) {
+  selector = exports.selector = function selector(value) {
     value = toArray(value)[0] || _warn("Invalid scope") || {};
     return function (v) {
       var el = value.current || value.nativeElement || value;
       return toArray(v, el.querySelectorAll ? el : el === value ? _warn("Invalid scope") || _doc.createElement("div") : value);
     };
   },
-  shuffle = function shuffle(a) {
+  shuffle = exports.shuffle = function shuffle(a) {
     return a.sort(function () {
       return .5 - Math.random();
     });
   },
   // alternative that's a bit faster and more reliably diverse but bigger:   for (let j, v, i = a.length; i; j = Math.floor(Math.random() * i), v = a[--i], a[i] = a[j], a[j] = v); return a;
   //for distributing values across an array. Can accept a number, a function or (most commonly) a function which can contain the following properties: {base, amount, from, ease, grid, axis, length, each}. Returns a function that expects the following parameters: index, target, array. Recognizes the following
-  distribute = function distribute(v) {
+  distribute = exports.distribute = function distribute(v) {
     if (_isFunction(v)) {
       return v;
     }
@@ -1339,7 +1330,7 @@ var _config = {
         if (!wrapAt) {
           max = -_bigNum;
           while (max < (max = a[wrapAt++].getBoundingClientRect().left) && wrapAt < l) {}
-          wrapAt--;
+          wrapAt < l && wrapAt--;
         }
         distances = cache[l] = [];
         originX = ratios ? Math.min(wrapAt, l) * ratioX - .5 : from % wrapAt;
@@ -1366,7 +1357,7 @@ var _config = {
       return _roundPrecise(distances.b + (ease ? ease(l) : l) * distances.v) + distances.u; //round in order to work around floating point errors
     };
   },
-  _roundModifier = function _roundModifier(v) {
+  _roundModifier = exports._roundModifier = function _roundModifier(v) {
     //pass in 0.1 get a function that'll round to the nearest tenth, or 5 to round to the closest 5, or 0.001 to the closest 1000th, etc.
     var p = Math.pow(10, ((v + "").split(".")[1] || "").length); //to avoid floating point math errors (like 24 * 0.1 == 2.4000000000000004), we chop off at a specific number of decimal places (much faster than toFixed())
 
@@ -1375,7 +1366,7 @@ var _config = {
       return (n - n % 1) / p + (_isNumber(raw) ? 0 : getUnit(raw)); // n - n % 1 replaces Math.floor() in order to handle negative values properly. For example, Math.floor(-150.00000000000003) is 151!
     };
   },
-  snap = function snap(snapTo, value) {
+  snap = exports.snap = function snap(snapTo, value) {
     var isArray = _isArray(snapTo),
       radius,
       is2D;
@@ -1418,12 +1409,12 @@ var _config = {
       return is2D || closest === raw || _isNumber(raw) ? closest : closest + getUnit(raw);
     });
   },
-  random = function random(min, max, roundingIncrement, returnFunction) {
+  random = exports.random = function random(min, max, roundingIncrement, returnFunction) {
     return _conditionalReturn(_isArray(min) ? !max : roundingIncrement === true ? !!(roundingIncrement = 0) : !returnFunction, function () {
       return _isArray(min) ? min[~~(Math.random() * min.length)] : (roundingIncrement = roundingIncrement || 1e-5) && (returnFunction = roundingIncrement < 1 ? Math.pow(10, (roundingIncrement + "").length - 2) : 1) && Math.floor(Math.round((min - roundingIncrement / 2 + Math.random() * (max - min + roundingIncrement * .99)) / roundingIncrement) * roundingIncrement * returnFunction) / returnFunction;
     });
   },
-  pipe = function pipe() {
+  pipe = exports.pipe = function pipe() {
     for (var _len = arguments.length, functions = new Array(_len), _key = 0; _key < _len; _key++) {
       functions[_key] = arguments[_key];
     }
@@ -1433,12 +1424,12 @@ var _config = {
       }, value);
     };
   },
-  unitize = function unitize(func, unit) {
+  unitize = exports.unitize = function unitize(func, unit) {
     return function (value) {
       return func(parseFloat(value)) + (unit || getUnit(value));
     };
   },
-  normalize = function normalize(min, max, value) {
+  normalize = exports.normalize = function normalize(min, max, value) {
     return mapRange(min, max, 0, 1, value);
   },
   _wrapArray = function _wrapArray(a, wrapper, value) {
@@ -1446,14 +1437,14 @@ var _config = {
       return a[~~wrapper(index)];
     });
   },
-  wrap = function wrap(min, max, value) {
+  wrap = exports.wrap = function wrap(min, max, value) {
     // NOTE: wrap() CANNOT be an arrow function! A very odd compiling bug causes problems (unrelated to GSAP).
     var range = max - min;
     return _isArray(min) ? _wrapArray(min, wrap(0, min.length), max) : _conditionalReturn(value, function (value) {
       return (range + (value - min) % range) % range + min;
     });
   },
-  wrapYoyo = function wrapYoyo(min, max, value) {
+  wrapYoyo = exports.wrapYoyo = function wrapYoyo(min, max, value) {
     var range = max - min,
       total = range * 2;
     return _isArray(min) ? _wrapArray(min, wrapYoyo(0, min.length - 1), max) : _conditionalReturn(value, function (value) {
@@ -1461,7 +1452,7 @@ var _config = {
       return min + (value > range ? total - value : value);
     });
   },
-  _replaceRandom = function _replaceRandom(value) {
+  _replaceRandom = exports._replaceRandom = function _replaceRandom(value) {
     //replaces all occurrences of random(...) in a string with the calculated random value. can be a range like random(-100, 100, 5) or an array like random([0, 100, 500])
     var prev = 0,
       s = "",
@@ -1478,14 +1469,14 @@ var _config = {
     }
     return s + value.substr(prev, value.length - prev);
   },
-  mapRange = function mapRange(inMin, inMax, outMin, outMax, value) {
+  mapRange = exports.mapRange = function mapRange(inMin, inMax, outMin, outMax, value) {
     var inRange = inMax - inMin,
       outRange = outMax - outMin;
     return _conditionalReturn(value, function (value) {
       return outMin + ((value - inMin) / inRange * outRange || 0);
     });
   },
-  interpolate = function interpolate(start, end, progress, mutate) {
+  interpolate = exports.interpolate = function interpolate(start, end, progress, mutate) {
     var func = isNaN(start + end) ? 0 : function (p) {
       return (1 - p) * start + p * end;
     };
@@ -1512,7 +1503,6 @@ var _config = {
         for (i = 1; i < l; i++) {
           interpolators.push(interpolate(start[i - 1], start[i])); //build the interpolators up front as a performance optimization so that when the function is called many times, it can just reuse them.
         }
-
         l--;
         func = function func(p) {
           p *= l;
@@ -1579,10 +1569,11 @@ var _config = {
   _quickTween,
   _registerPluginQueue = [],
   _createPlugin = function _createPlugin(config) {
-    if (_windowExists() && config) {
-      // edge case: some build tools may pass in a null/undefined value
-      config = !config.name && config["default"] || config; //UMD packaging wraps things oddly, so for example MotionPathHelper becomes {MotionPathHelper:MotionPathHelper, default:MotionPathHelper}.
+    if (!config) return;
+    config = !config.name && config["default"] || config; // UMD packaging wraps things oddly, so for example MotionPathHelper becomes {MotionPathHelper:MotionPathHelper, default:MotionPathHelper}.
 
+    if (_windowExists() || config.headless) {
+      // edge case: some build tools may pass in a null/undefined value
       var name = config.name,
         isFunc = _isFunction(config),
         Plugin = name && !isFunc && config.init ? function () {
@@ -1620,11 +1611,10 @@ var _config = {
         }
         name = (name === "css" ? "CSS" : name.charAt(0).toUpperCase() + name.substr(1)) + "Plugin"; //for the global name. "motionPath" should become MotionPathPlugin
       }
-
       _addGlobal(name, Plugin);
       config.register && config.register(gsap, Plugin, PropTween);
     } else {
-      config && _registerPluginQueue.push(config);
+      _registerPluginQueue.push(config);
     }
   },
   /*
@@ -1661,7 +1651,7 @@ var _config = {
     h += h < 0 ? 1 : h > 1 ? -1 : 0;
     return (h * 6 < 1 ? m1 + (m2 - m1) * h * 6 : h < .5 ? m2 : h * 3 < 2 ? m1 + (m2 - m1) * (2 / 3 - h) * 6 : m1) * _255 + .5 | 0;
   },
-  splitColor = function splitColor(v, toHSL, forceAlpha) {
+  splitColor = exports.splitColor = function splitColor(v, toHSL, forceAlpha) {
     var a = !v ? _colorLookup.black : _isNumber(v) ? [v >> 16, v >> 8 & _255, v & _255] : 0,
       r,
       g,
@@ -1789,7 +1779,7 @@ var _config = {
     }
     return result + shell[l];
   },
-  _colorExp = function () {
+  _colorExp = exports._colorExp = function () {
     var s = "(?:\\b(?:(?:rgb|rgba|hsl|hsla)\\(.+?\\))|\\B#(?:[0-9a-f]{3,4}){1,2}\\b",
       //we'll dynamically build this Regular Expression to conserve file size. After building it, it will be able to find rgb(), rgba(), # (hexadecimal), and named color values like red, blue, purple, etc.,
       p;
@@ -1799,7 +1789,7 @@ var _config = {
     return new RegExp(s + ")", "gi");
   }(),
   _hslExp = /hsl[a]?\(/,
-  _colorStringFilter = function _colorStringFilter(a) {
+  _colorStringFilter = exports._colorStringFilter = function _colorStringFilter(a) {
     var combined = a.join(" "),
       toHSL;
     _colorExp.lastIndex = 0;
@@ -1817,7 +1807,7 @@ var _config = {
    * --------------------------------------------------------------------------------------
    */
   _tickerActive,
-  _ticker = function () {
+  _ticker = exports._ticker = function () {
     var _getTime = Date.now,
       _lagThreshold = 500,
       _adjustedLag = 33,
@@ -1839,7 +1829,7 @@ var _config = {
           dispatch,
           time,
           frame;
-        elapsed > _lagThreshold && (_startTime += elapsed - _adjustedLag);
+        (elapsed > _lagThreshold || elapsed < 0) && (_startTime += elapsed - _adjustedLag);
         _lastUpdate += elapsed;
         time = _lastUpdate - _startTime;
         overlap = time - _nextTime;
@@ -1876,9 +1866,9 @@ var _config = {
             _globals.gsap = gsap;
             (_win.gsapVersions || (_win.gsapVersions = [])).push(gsap.version);
             _install(_installScope || _win.GreenSockGlobals || !_win.gsap && _win || {});
-            _raf = _win.requestAnimationFrame;
             _registerPluginQueue.forEach(_createPlugin);
           }
+          _raf = typeof requestAnimationFrame !== "undefined" && requestAnimationFrame;
           _id && _self.sleep();
           _req = _raf || function (f) {
             return setTimeout(f, _nextTime - _self.time * 1000 + 1 | 0);
@@ -1888,7 +1878,7 @@ var _config = {
         }
       },
       sleep: function sleep() {
-        (_raf ? _win.cancelAnimationFrame : clearTimeout)(_id);
+        (_raf ? cancelAnimationFrame : clearTimeout)(_id);
         _tickerActive = 0;
         _req = _emptyFunc;
       },
@@ -2066,42 +2056,7 @@ var _config = {
 // 		c = ratio + o;
 // 	return p => p === 1 ? p : 3 * b * (1 - p) * (1 - p) * p + 3 * c * (1 - p) * p * p + p * p * p;
 // };
-exports._ticker = _ticker;
-exports._colorStringFilter = _colorStringFilter;
-exports._colorExp = _colorExp;
-exports.splitColor = splitColor;
-exports.interpolate = interpolate;
-exports.mapRange = mapRange;
-exports._replaceRandom = _replaceRandom;
-exports.wrapYoyo = wrapYoyo;
-exports.wrap = wrap;
-exports.normalize = normalize;
-exports.unitize = unitize;
-exports.pipe = pipe;
-exports.random = random;
-exports.snap = snap;
-exports._roundModifier = _roundModifier;
-exports.distribute = distribute;
-exports.shuffle = shuffle;
-exports.selector = selector;
-exports.toArray = toArray;
-exports.clamp = clamp;
-exports.getUnit = getUnit;
-exports._removeLinkedListItem = _removeLinkedListItem;
-exports._setDefaults = _setDefaults;
-exports._parseRelative = _parseRelative;
-exports._round = _round;
-exports._forEachName = _forEachName;
-exports._getProperty = _getProperty;
-exports._getCache = _getCache;
-exports._plugins = _plugins;
-exports._missingPlugin = _missingPlugin;
-exports._relExp = _relExp;
-exports._numWithUnitExp = _numWithUnitExp;
-exports._numExp = _numExp;
-exports._isUndefined = _isUndefined;
-exports._isString = _isString;
-exports._config = _config;
+
 _forEachName("Linear,Quad,Cubic,Quart,Quint,Strong", function (name, i) {
   var power = i < 5 ? i + 1 : i;
   _insertEase(name + ",Power" + (power - 1), i ? function (p) {
@@ -2161,7 +2116,7 @@ _forEachName("onComplete,onUpdate,onStart,onRepeat,onReverseComplete,onInterrupt
  * --------------------------------------------------------------------------------------
  */
 
-var GSCache = function GSCache(target, harness) {
+var GSCache = exports.GSCache = function GSCache(target, harness) {
   this.id = _gsID++;
   target._gsap = this;
   this.target = target;
@@ -2174,8 +2129,8 @@ var GSCache = function GSCache(target, harness) {
  * ANIMATION
  * --------------------------------------------------------------------------------------
  */
-exports.GSCache = GSCache;
-var Animation = /*#__PURE__*/function () {
+
+var Animation = exports.Animation = /*#__PURE__*/function () {
   function Animation(vars) {
     this.vars = vars;
     this._delay = +vars.delay || 0;
@@ -2243,18 +2198,16 @@ var Animation = /*#__PURE__*/function () {
       _lazySafeRender(this, _totalTime, suppressEvents); //   this._lock = 0;
       //}
     }
-
     return this;
   };
   _proto.time = function time(value, suppressEvents) {
     return arguments.length ? this.totalTime(Math.min(this.totalDuration(), value + _elapsedCycleDuration(this)) % (this._dur + this._rDelay) || (value ? this._dur : 0), suppressEvents) : this._time; // note: if the modulus results in 0, the playhead could be exactly at the end or the beginning, and we always defer to the END with a non-zero value, otherwise if you set the time() to the very end (duration()), it would render at the START!
   };
-
   _proto.totalProgress = function totalProgress(value, suppressEvents) {
-    return arguments.length ? this.totalTime(this.totalDuration() * value, suppressEvents) : this.totalDuration() ? Math.min(1, this._tTime / this._tDur) : this.ratio;
+    return arguments.length ? this.totalTime(this.totalDuration() * value, suppressEvents) : this.totalDuration() ? Math.min(1, this._tTime / this._tDur) : this.rawTime() > 0 ? 1 : 0;
   };
   _proto.progress = function progress(value, suppressEvents) {
-    return arguments.length ? this.totalTime(this.duration() * (this._yoyo && !(this.iteration() & 1) ? 1 - value : value) + _elapsedCycleDuration(this), suppressEvents) : this.duration() ? Math.min(1, this._time / this._dur) : this.ratio;
+    return arguments.length ? this.totalTime(this.duration() * (this._yoyo && !(this.iteration() & 1) ? 1 - value : value) + _elapsedCycleDuration(this), suppressEvents) : this.duration() ? Math.min(1, this._time / this._dur) : this.rawTime() > 0 ? 1 : 0;
   };
   _proto.iteration = function iteration(value, suppressEvents) {
     var cycleDuration = this.duration() + this._rDelay;
@@ -2270,12 +2223,10 @@ var Animation = /*#__PURE__*/function () {
   // 	return orientation < 0;
   // }
   ;
-
-  _proto.timeScale = function timeScale(value) {
+  _proto.timeScale = function timeScale(value, suppressEvents) {
     if (!arguments.length) {
       return this._rts === -_tinyNum ? 0 : this._rts; // recorded timeScale. Special case: if someone calls reverse() on an animation with timeScale of 0, we assign it -_tinyNum to remember it's reversed.
     }
-
     if (this._rts === value) {
       return this;
     }
@@ -2287,7 +2238,7 @@ var Animation = /*#__PURE__*/function () {
     this._rts = +value || 0;
     this._ts = this._ps || value === -_tinyNum ? 0 : this._rts; // _ts is the functional timeScale which would be 0 if the animation is paused.
 
-    this.totalTime(_clamp(-Math.abs(this._delay), this._tDur, tTime), true);
+    this.totalTime(_clamp(-Math.abs(this._delay), this._tDur, tTime), suppressEvents !== false);
     _setEnd(this); // if parent.smoothChildTiming was false, the end time didn't get updated in the _alignPlayhead() method, so do it here.
 
     return _recacheAncestors(this);
@@ -2309,7 +2260,6 @@ var Animation = /*#__PURE__*/function () {
         this.totalTime(this.parent && !this.parent.smoothChildTiming ? this.rawTime() : this._tTime || this._pTime, this.progress() === 1 && Math.abs(this._zTime) !== _tinyNum && (this._tTime -= _tinyNum)); // edge case: animation.progress(1).pause().play() wouldn't render again because the playhead is already at the end, but the call to totalTime() below will add it back to its parent...and not remove it again (since removing only happens upon rendering at a new time). Offsetting the _tTime slightly is done simply to cause the final render in totalTime() that'll pop it off its timeline (if autoRemoveChildren is true, of course). Check to make sure _zTime isn't -_tinyNum to avoid an edge case where the playhead is pushed to the end but INSIDE a tween/callback, the timeline itself is paused thus halting rendering and leaving a few unrendered. When resuming, it wouldn't render those otherwise.
       }
     }
-
     return this;
   };
   _proto.startTime = function startTime(value) {
@@ -2347,12 +2297,11 @@ var Animation = /*#__PURE__*/function () {
     var animation = this,
       time = arguments.length ? rawTime : animation.rawTime();
     while (animation) {
-      time = animation._start + time / (animation._ts || 1);
+      time = animation._start + time / (Math.abs(animation._ts) || 1);
       animation = animation._dp;
     }
-    return !this.parent && this._sat ? this._sat.vars.immediateRender ? -Infinity : this._sat.globalTime(rawTime) : time; // the _startAt tweens for .fromTo() and .from() that have immediateRender should always be FIRST in the timeline (important for context.revert()). "_sat" stands for _startAtTween, referring to the parent tween that created the _startAt. We must discern if that tween had immediateRender so that we can know whether or not to prioritize it in revert().
+    return !this.parent && this._sat ? this._sat.globalTime(rawTime) : time; // the _startAt tweens for .fromTo() and .from() that have immediateRender should always be FIRST in the timeline (important for context.revert()). "_sat" stands for _startAtTween, referring to the parent tween that created the _startAt. We must discern if that tween had immediateRender so that we can know whether or not to prioritize it in revert().
   };
-
   _proto.repeat = function repeat(value) {
     if (arguments.length) {
       this._repeat = value === Infinity ? -2 : value;
@@ -2454,7 +2403,6 @@ var Animation = /*#__PURE__*/function () {
   };
   return Animation;
 }();
-exports.Animation = Animation;
 _setDefaults(Animation.prototype, {
   _time: 0,
   _start: 0,
@@ -2481,7 +2429,7 @@ _setDefaults(Animation.prototype, {
  * -------------------------------------------------
  */
 
-var Timeline = /*#__PURE__*/function (_Animation) {
+var Timeline = exports.TimelineLite = exports.TimelineMax = exports.Timeline = /*#__PURE__*/function (_Animation) {
   _inheritsLoose(Timeline, _Animation);
   function Timeline(vars, position) {
     var _this;
@@ -2524,7 +2472,6 @@ var Timeline = /*#__PURE__*/function (_Animation) {
     return _addToTimeline(this, Tween.delayedCall(0, callback, params), position);
   } //ONLY for backward compatibility! Maybe delete?
   ;
-
   _proto2.staggerTo = function staggerTo(targets, duration, vars, stagger, position, onCompleteAll, onCompleteAllParams) {
     vars.duration = duration;
     vars.stagger = vars.stagger || stagger;
@@ -2601,7 +2548,7 @@ var Timeline = /*#__PURE__*/function (_Animation) {
           time > dur && (time = dur);
         }
         prevIteration = _animationCycle(this._tTime, cycleDuration);
-        !prevTime && this._tTime && prevIteration !== iteration && this._tTime - prevIteration * cycleDuration - this._dur <= 0 && (prevIteration = iteration); // edge case - if someone does addPause() at the very beginning of a repeating timeline, that pause is technically at the same spot as the end which causes this._time to get set to 0 when the totalTime would normally place the playhead at the end. See https://greensock.com/forums/topic/23823-closing-nav-animation-not-working-on-ie-and-iphone-6-maybe-other-older-browser/?tab=comments#comment-113005 also, this._tTime - prevIteration * cycleDuration - this._dur <= 0 just checks to make sure it wasn't previously in the "repeatDelay" portion
+        !prevTime && this._tTime && prevIteration !== iteration && this._tTime - prevIteration * cycleDuration - this._dur <= 0 && (prevIteration = iteration); // edge case - if someone does addPause() at the very beginning of a repeating timeline, that pause is technically at the same spot as the end which causes this._time to get set to 0 when the totalTime would normally place the playhead at the end. See https://gsap.com/forums/topic/23823-closing-nav-animation-not-working-on-ie-and-iphone-6-maybe-other-older-browser/?tab=comments#comment-113005 also, this._tTime - prevIteration * cycleDuration - this._dur <= 0 just checks to make sure it wasn't previously in the "repeatDelay" portion
 
         if (yoyo && iteration & 1) {
           time = dur - time;
@@ -2665,7 +2612,6 @@ var Timeline = /*#__PURE__*/function (_Animation) {
         this._zTime = totalTime;
         prevTime = 0; // upon init, the playhead should always go forward; someone could invalidate() a completed timeline and then if they restart(), that would make child tweens render in reverse order which could lock in the wrong starting values if they build on each other, like tl.to(obj, {x: 100}).to(obj, {x: 0}).
       }
-
       if (!prevTime && time && !suppressEvents && !iteration) {
         _callback(this, "onStart");
         if (this._tTime !== tTime) {
@@ -2762,7 +2708,6 @@ var Timeline = /*#__PURE__*/function (_Animation) {
     }
     return this !== child ? _addToTimeline(this, child, position) : this; //don't allow a timeline to be added to itself as a child!
   };
-
   _proto2.getChildren = function getChildren(nested, tweens, timelines, ignoreBeforeTime) {
     if (nested === void 0) {
       nested = true;
@@ -2884,7 +2829,6 @@ var Timeline = /*#__PURE__*/function (_Animation) {
   // 	return result.filter((v, i) => result.indexOf(v) === i);
   // }
   ;
-
   _proto2.tweenTo = function tweenTo(position, vars) {
     vars = vars || {};
     var tl = this,
@@ -3050,7 +2994,6 @@ var Timeline = /*#__PURE__*/function (_Animation) {
   };
   return Timeline;
 }(Animation);
-exports.TimelineLite = exports.TimelineMax = exports.Timeline = Timeline;
 _setDefaults(Timeline.prototype, {
   _lock: 0,
   _hasPause: 0,
@@ -3113,7 +3056,6 @@ var _addComplexStringPropTween = function _addComplexStringPropTween(target, pro
     if (_relExp.test(end) || hasRandom) {
       pt.e = 0; //if the end string contains relative values or dynamic random(...) values, delete the end it so that on the final render we don't actually set it to the string with += or -= characters (forces it to use the calculated value).
     }
-
     this._pt = pt; //start the linked list with this new PropTween. Remember, we call _addComplexStringPropTween.call(tweenInstance...) to ensure that it's scoped properly. We may call it from within a plugin too, thus "this" would refer to the plugin.
 
     return pt;
@@ -3161,7 +3103,7 @@ var _addComplexStringPropTween = function _addComplexStringPropTween(target, pro
     }
     return copy;
   },
-  _checkPlugin = function _checkPlugin(property, vars, tween, index, target, targets) {
+  _checkPlugin = exports._checkPlugin = function _checkPlugin(property, vars, tween, index, target, targets) {
     var plugin, pt, ptLookup, i;
     if (_plugins[property] && (plugin = new _plugins[property]()).init(target, plugin.rawVars ? vars[property] : _processVars(vars[property], index, target, targets, tween), tween, index, targets) !== false) {
       tween._pt = pt = new PropTween(tween._pt, target, property, 0, 1, plugin.render, plugin, 0, plugin.priority);
@@ -3186,8 +3128,6 @@ var _addComplexStringPropTween = function _addComplexStringPropTween(target, pro
       immediateRender = vars.immediateRender,
       lazy = vars.lazy,
       onUpdate = vars.onUpdate,
-      onUpdateParams = vars.onUpdateParams,
-      callbackScope = vars.callbackScope,
       runBackwards = vars.runBackwards,
       yoyoEase = vars.yoyoEase,
       keyframes = vars.keyframes,
@@ -3246,9 +3186,9 @@ var _addComplexStringPropTween = function _addComplexStringPropTween(target, pro
           lazy: !prevStartAt && _isNotFalse(lazy),
           startAt: null,
           delay: 0,
-          onUpdate: onUpdate,
-          onUpdateParams: onUpdateParams,
-          callbackScope: callbackScope,
+          onUpdate: onUpdate && function () {
+            return _callback(tween, "onUpdate");
+          },
           stagger: 0
         }, startAt))); //copy the properties/values into a new object to avoid collisions, like var to = {x:0}, from = {x:500}; timeline.fromTo(e, from, to).fromTo(e, to, from);
 
@@ -3334,13 +3274,12 @@ var _addComplexStringPropTween = function _addComplexStringPropTween(target, pro
       hasPriority && _sortPropTweensByPriority(tween);
       tween._onInit && tween._onInit(tween); //plugins like RoundProps must wait until ALL of the PropTweens are instantiated. In the plugin's init() function, it sets the _onInit on the tween instance. May not be pretty/intuitive, but it's fast and keeps file size down.
     }
-
     tween._onUpdate = onUpdate;
     tween._initted = (!tween._op || tween._pt) && !overwritten; // if overwrittenProps resulted in the entire tween being killed, do NOT flag it as initted or else it may render for one tick.
 
     keyframes && time <= 0 && tl.render(_bigNum, true, true); // if there's a 0% keyframe, it'll render in the "before" state for any staggered/delayed animations thus when the following tween initializes, it'll use the "before" state instead of the "after" state as the initial values.
   },
-  _updatePropTweens = function _updatePropTweens(tween, property, value, start, startIsRelative, ratio, time) {
+  _updatePropTweens = function _updatePropTweens(tween, property, value, start, startIsRelative, ratio, time, skipRecursion) {
     var ptCache = (tween._pt && tween._ptCache || (tween._ptCache = {}))[property],
       pt,
       rootPT,
@@ -3368,7 +3307,7 @@ var _addComplexStringPropTween = function _addComplexStringPropTween(target, pro
           tween.vars[property] = "+=0";
           _initTween(tween, time);
           _forceAllPropTweens = 0;
-          return 1;
+          return skipRecursion ? _warn(property + " not eligible for reset") : 1; // if someone tries to do a quickTo() on a special property like borderRadius which must get split into 4 different properties, that's not eligible for .resetTo().
         }
         ptCache.push(pt);
       }
@@ -3438,7 +3377,6 @@ var _addComplexStringPropTween = function _addComplexStringPropTween(target, pro
   },
   _staggerTweenProps = _callbackNames + "repeat,repeatDelay,yoyo,repeatRefresh,yoyoEase,autoRevert",
   _staggerPropsToSkip = {};
-exports._checkPlugin = _checkPlugin;
 _forEachName(_staggerTweenProps + ",id,stagger,delay,duration,paused,scrollTrigger", function (name) {
   return _staggerPropsToSkip[name] = 1;
 });
@@ -3448,7 +3386,7 @@ _forEachName(_staggerTweenProps + ",id,stagger,delay,duration,paused,scrollTrigg
  * --------------------------------------------------------------------------------------
  */
 
-var Tween = /*#__PURE__*/function (_Animation2) {
+var Tween = exports.TweenLite = exports.TweenMax = exports.Tween = /*#__PURE__*/function (_Animation2) {
   _inheritsLoose(Tween, _Animation2);
   function Tween(targets, vars, position, skipInherit) {
     var _this3;
@@ -3478,7 +3416,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
       curTarget,
       staggerFunc,
       staggerVarsToMerge;
-    _this3._targets = parsedTargets.length ? _harness(parsedTargets) : _warn("GSAP target " + targets + " not found. https://greensock.com", !_config.nullTargetWarn) || [];
+    _this3._targets = parsedTargets.length ? _harness(parsedTargets) : _warn("GSAP target " + targets + " not found. https://gsap.com", !_config.nullTargetWarn) || [];
     _this3._ptLookup = []; //PropTween lookup. An array containing an object for each target, having keys for each tweening property
 
     _this3._overwrite = overwrite;
@@ -3564,12 +3502,10 @@ var Tween = /*#__PURE__*/function (_Animation2) {
           }); // in case keyframes didn't go to 100%
         }
       }
-
       duration || _this3.duration(duration = tl.duration());
     } else {
       _this3.timeline = 0; //speed optimization, faster lookups (no going up the prototype chain)
     }
-
     if (overwrite === true && !_suppressOverwrites) {
       _overwritingTween = _assertThisInitialized(_this3);
       _globalTimeline.killTweensOf(parsedTargets);
@@ -3583,7 +3519,6 @@ var Tween = /*#__PURE__*/function (_Animation2) {
 
       _this3.render(Math.max(0, -delay) || 0); //in case delay is negative
     }
-
     scrollTrigger && _scrollTrigger(_assertThisInitialized(_this3), scrollTrigger);
     return _this3;
   }
@@ -3623,7 +3558,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
           time = dur;
         } else {
           iteration = ~~(tTime / cycleDuration);
-          if (iteration && iteration === tTime / cycleDuration) {
+          if (iteration && iteration === _roundPrecise(tTime / cycleDuration)) {
             time = dur;
             iteration--;
           }
@@ -3635,7 +3570,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
           time = dur - time;
         }
         prevIteration = _animationCycle(this._tTime, cycleDuration);
-        if (time === prevTime && !force && this._initted) {
+        if (time === prevTime && !force && this._initted && iteration === prevIteration) {
           //could be during the repeatDelay part. No need to render and fire callbacks.
           this._tTime = tTime;
           return this;
@@ -3643,7 +3578,8 @@ var Tween = /*#__PURE__*/function (_Animation2) {
         if (iteration !== prevIteration) {
           timeline && this._yEase && _propagateYoyoEase(timeline, isYoyo); //repeatRefresh functionality
 
-          if (this.vars.repeatRefresh && !isYoyo && !this._lock) {
+          if (this.vars.repeatRefresh && !isYoyo && !this._lock && this._time !== cycleDuration && this._initted) {
+            // this._time will === cycleDuration when we render at EXACTLY the end of an iteration. Without this condition, it'd often do the repeatRefresh render TWICE (again on the very next tick).
             this._lock = force = 1; //force, otherwise if lazy is true, the _attemptInitTween() will return and we'll jump out and get caught bouncing on each tick.
 
             this.render(_roundPrecise(cycleDuration * iteration), true).invalidate()._lock = 0;
@@ -3656,8 +3592,8 @@ var Tween = /*#__PURE__*/function (_Animation2) {
 
           return this;
         }
-        if (prevTime !== this._time) {
-          // rare edge case - during initialization, an onUpdate in the _startAt (.fromTo()) might force this tween to render at a different spot in which case we should ditch this render() call so that it doesn't revert the values.
+        if (prevTime !== this._time && !(force && this.vars.repeatRefresh && iteration !== prevIteration)) {
+          // rare edge case - during initialization, an onUpdate in the _startAt (.fromTo()) might force this tween to render at a different spot in which case we should ditch this render() call so that it doesn't revert the values. But we also don't want to dump if we're doing a repeatRefresh render!
           return this;
         }
         if (dur !== this._dur) {
@@ -3688,7 +3624,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
         pt.r(ratio, pt.d);
         pt = pt._next;
       }
-      timeline && timeline.render(totalTime < 0 ? totalTime : !time && isYoyo ? -_tinyNum : timeline._dur * timeline._ease(time / this._dur), suppressEvents, force) || this._startAt && (this._zTime = totalTime);
+      timeline && timeline.render(totalTime < 0 ? totalTime : timeline._dur * timeline._ease(time / this._dur), suppressEvents, force) || this._startAt && (this._zTime = totalTime);
       if (this._onUpdate && !suppressEvents) {
         isNegative && _rewindStartAt(this, totalTime, suppressEvents, force); //note: for performance reasons, we tuck this conditional logic inside less traveled areas (most tweens don't have an onUpdate). We'd just have it at the end before the onComplete, but the values should be updated before any onUpdate is called, so we ALSO put it here and then if it's not called, we do so later near the onComplete.
 
@@ -3719,7 +3655,7 @@ var Tween = /*#__PURE__*/function (_Animation2) {
     this.timeline && this.timeline.invalidate(soft);
     return _Animation2.prototype.invalidate.call(this, soft);
   };
-  _proto3.resetTo = function resetTo(property, value, start, startIsRelative) {
+  _proto3.resetTo = function resetTo(property, value, start, startIsRelative, skipRecursion) {
     _tickerActive || _ticker.wake();
     this._ts || this.play();
     var time = Math.min(this._dur, (this._dp._time - this._start) * this._ts),
@@ -3735,8 +3671,8 @@ var Tween = /*#__PURE__*/function (_Animation2) {
     // 	}
     // } else {
 
-    if (_updatePropTweens(this, property, value, start, startIsRelative, ratio, time)) {
-      return this.resetTo(property, value, start, startIsRelative); // if a PropTween wasn't found for the property, it'll get forced with a re-initialization so we need to jump out and start over again.
+    if (_updatePropTweens(this, property, value, start, startIsRelative, ratio, time, skipRecursion)) {
+      return this.resetTo(property, value, start, startIsRelative, 1); // if a PropTween wasn't found for the property, it'll get forced with a re-initialization so we need to jump out and start over again.
     } //}
 
     _alignPlayhead(this, 0);
@@ -3835,7 +3771,6 @@ var Tween = /*#__PURE__*/function (_Animation2) {
       callbackScope: scope
     }); // we must use onReverseComplete too for things like timeline.add(() => {...}) which should be triggered in BOTH directions (forward and reverse)
   };
-
   Tween.fromTo = function fromTo(targets, fromVars, toVars) {
     return _createTweenType(2, arguments);
   };
@@ -3849,7 +3784,6 @@ var Tween = /*#__PURE__*/function (_Animation2) {
   };
   return Tween;
 }(Animation);
-exports.TweenLite = exports.TweenMax = exports.Tween = Tween;
 _setDefaults(Tween.prototype, {
   _targets: [],
   _lazy: 0,
@@ -3891,7 +3825,7 @@ var _setterPlain = function _setterPlain(target, property, value) {
   _setterAttribute = function _setterAttribute(target, property, value) {
     return target.setAttribute(property, value);
   },
-  _getSetter = function _getSetter(target, property) {
+  _getSetter = exports._getSetter = function _getSetter(target, property) {
     return _isFunction(target[property]) ? _setterFunc : _isUndefined(target[property]) && target.setAttribute ? _setterAttribute : _setterPlain;
   },
   _renderPlain = function _renderPlain(ratio, data) {
@@ -3900,7 +3834,7 @@ var _setterPlain = function _setterPlain(target, property, value) {
   _renderBoolean = function _renderBoolean(ratio, data) {
     return data.set(data.t, data.p, !!(data.s + data.c * ratio), data);
   },
-  _renderComplexString = function _renderComplexString(ratio, data) {
+  _renderComplexString = exports._renderComplexString = function _renderComplexString(ratio, data) {
     var pt = data._pt,
       s = "";
     if (!ratio && data.b) {
@@ -3917,7 +3851,6 @@ var _setterPlain = function _setterPlain(target, property, value) {
       }
       s += data.c; //we use the "c" of the PropTween to store the final chunk of non-numeric text.
     }
-
     data.set(data.t, data.p, s, data);
   },
   _renderPropTweens = function _renderPropTweens(ratio, data) {
@@ -3954,7 +3887,7 @@ var _setterPlain = function _setterPlain(target, property, value) {
   _setterWithModifier = function _setterWithModifier(target, property, value, data) {
     data.mSet(target, property, data.m.call(data.tween, value, data.mt), data);
   },
-  _sortPropTweensByPriority = function _sortPropTweensByPriority(parent) {
+  _sortPropTweensByPriority = exports._sortPropTweensByPriority = function _sortPropTweensByPriority(parent) {
     var pt = parent._pt,
       next,
       pt2,
@@ -3981,10 +3914,8 @@ var _setterPlain = function _setterPlain(target, property, value) {
     }
     parent._pt = first;
   }; //PropTween key: t = target, p = prop, r = renderer, d = data, s = start, c = change, op = overwriteProperty (ONLY populated when it's different than p), pr = priority, _next/_prev for the linked list siblings, set = setter, m = modifier, mSet = modifierSetter (the original setter, before a modifier was added)
-exports._sortPropTweensByPriority = _sortPropTweensByPriority;
-exports._renderComplexString = _renderComplexString;
-exports._getSetter = _getSetter;
-var PropTween = /*#__PURE__*/function () {
+
+var PropTween = exports.PropTween = /*#__PURE__*/function () {
   function PropTween(next, target, prop, start, change, renderer, data, setter, priority) {
     this.t = target;
     this.s = start;
@@ -4011,7 +3942,7 @@ var PropTween = /*#__PURE__*/function () {
   };
   return PropTween;
 }(); //Initialization tasks
-exports.PropTween = PropTween;
+
 _forEachName(_callbackNames + "parent,duration,ease,delay,overwrite,runBackwards,startAt,yoyo,immediateRender,repeat,repeatDelay,data,paused,reversed,lazy,callbackScope,stringFilter,id,yoyoEase,stagger,inherit,repeatRefresh,keyframes,autoRevert,scrollTrigger", function (name) {
   return _reservedProps[name] = 1;
 });
@@ -4063,7 +3994,9 @@ var _media = [],
       });
       _dispatch("matchMediaRevert");
       matches.forEach(function (c) {
-        return c.onMatch(c);
+        return c.onMatch(c, function (func) {
+          return c.add(null, func);
+        });
       });
       _lastMediaTime = time;
       _dispatch("matchMedia");
@@ -4108,7 +4041,9 @@ var Context = /*#__PURE__*/function () {
         return result;
       };
     self.last = f;
-    return name === _isFunction ? f(self) : name ? self[name] = f : f;
+    return name === _isFunction ? f(self, function (func) {
+      return self.add(null, func);
+    }) : name ? self[name] = f : f;
   };
   _proto5.ignore = function ignore(func) {
     var prev = _context;
@@ -4129,35 +4064,50 @@ var Context = /*#__PURE__*/function () {
   _proto5.kill = function kill(revert, matchMedia) {
     var _this4 = this;
     if (revert) {
-      var tweens = this.getTweens();
-      this.data.forEach(function (t) {
-        // Flip plugin tweens are very different in that they should actually be pushed to their end. The plugin replaces the timeline's .revert() method to do exactly that. But we also need to remove any of those nested tweens inside the flip timeline so that they don't get individually reverted.
-        if (t.data === "isFlip") {
-          t.revert();
-          t.getChildren(true, true, false).forEach(function (tween) {
-            return tweens.splice(tweens.indexOf(tween), 1);
-          });
+      (function () {
+        var tweens = _this4.getTweens(),
+          i = _this4.data.length,
+          t;
+        while (i--) {
+          // Flip plugin tweens are very different in that they should actually be pushed to their end. The plugin replaces the timeline's .revert() method to do exactly that. But we also need to remove any of those nested tweens inside the flip timeline so that they don't get individually reverted.
+          t = _this4.data[i];
+          if (t.data === "isFlip") {
+            t.revert();
+            t.getChildren(true, true, false).forEach(function (tween) {
+              return tweens.splice(tweens.indexOf(tween), 1);
+            });
+          }
+        } // save as an object so that we can cache the globalTime for each tween to optimize performance during the sort
+
+        tweens.map(function (t) {
+          return {
+            g: t._dur || t._delay || t._sat && !t._sat.vars.immediateRender ? t.globalTime(0) : -Infinity,
+            t: t
+          };
+        }).sort(function (a, b) {
+          return b.g - a.g || -Infinity;
+        }).forEach(function (o) {
+          return o.t.revert(revert);
+        }); // note: all of the _startAt tweens should be reverted in reverse order that they were created, and they'll all have the same globalTime (-1) so the " || -1" in the sort keeps the order properly.
+
+        i = _this4.data.length;
+        while (i--) {
+          // make sure we loop backwards so that, for example, SplitTexts that were created later on the same element get reverted first
+          t = _this4.data[i];
+          if (t instanceof Timeline) {
+            if (t.data !== "nested") {
+              t.scrollTrigger && t.scrollTrigger.revert();
+              t.kill(); // don't revert() the timeline because that's duplicating efforts since we already reverted all the tweens
+            }
+          } else {
+            !(t instanceof Tween) && t.revert && t.revert(revert);
+          }
         }
-      }); // save as an object so that we can cache the globalTime for each tween to optimize performance during the sort
-
-      tweens.map(function (t) {
-        return {
-          g: t.globalTime(0),
-          t: t
-        };
-      }).sort(function (a, b) {
-        return b.g - a.g || -Infinity;
-      }).forEach(function (o) {
-        return o.t.revert(revert);
-      }); // note: all of the _startAt tweens should be reverted in reverse order that they were created, and they'll all have the same globalTime (-1) so the " || -1" in the sort keeps the order properly.
-
-      this.data.forEach(function (e) {
-        return !(e instanceof Tween) && e.revert && e.revert(revert);
-      });
-      this._r.forEach(function (f) {
-        return f(revert, _this4);
-      });
-      this.isReverted = true;
+        _this4._r.forEach(function (f) {
+          return f(revert, _this4);
+        });
+        _this4.isReverted = true;
+      })();
     } else {
       this.data.forEach(function (e) {
         return e.kill && e.kill();
@@ -4181,6 +4131,7 @@ var MatchMedia = /*#__PURE__*/function () {
   function MatchMedia(scope) {
     this.contexts = [];
     this.scope = scope;
+    _context && _context.data.push(this);
   }
   var _proto6 = MatchMedia.prototype;
   _proto6.add = function add(conditions, func, scope) {
@@ -4209,7 +4160,9 @@ var MatchMedia = /*#__PURE__*/function () {
         }
       }
     }
-    active && func(context);
+    active && func(context, function (f) {
+      return context.add(null, f);
+    });
     return this;
   } // refresh() {
   // 	let time = _lastMediaTime,
@@ -4221,7 +4174,6 @@ var MatchMedia = /*#__PURE__*/function () {
   // 	_media = media;
   // }
   ;
-
   _proto6.revert = function revert(config) {
     this.kill(config || {});
   };
@@ -4501,7 +4453,7 @@ var _getPluginPropTween = function _getPluginPropTween(plugin, prop) {
     };
   }; //register core plugins
 
-var gsap = _gsap.registerPlugin({
+var gsap = exports.default = exports.gsap = _gsap.registerPlugin({
   name: "attr",
   init: function init(target, vars, tween, index, targets) {
     var p, pt, v;
@@ -4532,48 +4484,30 @@ var gsap = _gsap.registerPlugin({
     }
   }
 }, _buildModifierPlugin("roundProps", _roundModifier), _buildModifierPlugin("modifiers"), _buildModifierPlugin("snap", snap)) || _gsap; //to prevent the core plugins from being dropped via aggressive tree shaking, we must include them in the variable declaration in this way.
-exports.default = exports.gsap = gsap;
-Tween.version = Timeline.version = gsap.version = "3.12.2";
+
+Tween.version = Timeline.version = gsap.version = "3.12.5";
 _coreReady = 1;
 _windowExists() && _wake();
-var Power0 = _easeMap.Power0,
-  Power1 = _easeMap.Power1,
-  Power2 = _easeMap.Power2,
-  Power3 = _easeMap.Power3,
-  Power4 = _easeMap.Power4,
-  Linear = _easeMap.Linear,
-  Quad = _easeMap.Quad,
-  Cubic = _easeMap.Cubic,
-  Quart = _easeMap.Quart,
-  Quint = _easeMap.Quint,
-  Strong = _easeMap.Strong,
-  Elastic = _easeMap.Elastic,
-  Back = _easeMap.Back,
-  SteppedEase = _easeMap.SteppedEase,
-  Bounce = _easeMap.Bounce,
-  Sine = _easeMap.Sine,
-  Expo = _easeMap.Expo,
-  Circ = _easeMap.Circ;
+var Power0 = exports.Power0 = _easeMap.Power0,
+  Power1 = exports.Power1 = _easeMap.Power1,
+  Power2 = exports.Power2 = _easeMap.Power2,
+  Power3 = exports.Power3 = _easeMap.Power3,
+  Power4 = exports.Power4 = _easeMap.Power4,
+  Linear = exports.Linear = _easeMap.Linear,
+  Quad = exports.Quad = _easeMap.Quad,
+  Cubic = exports.Cubic = _easeMap.Cubic,
+  Quart = exports.Quart = _easeMap.Quart,
+  Quint = exports.Quint = _easeMap.Quint,
+  Strong = exports.Strong = _easeMap.Strong,
+  Elastic = exports.Elastic = _easeMap.Elastic,
+  Back = exports.Back = _easeMap.Back,
+  SteppedEase = exports.SteppedEase = _easeMap.SteppedEase,
+  Bounce = exports.Bounce = _easeMap.Bounce,
+  Sine = exports.Sine = _easeMap.Sine,
+  Expo = exports.Expo = _easeMap.Expo,
+  Circ = exports.Circ = _easeMap.Circ;
 
 //export some internal methods/orojects for use in CSSPlugin so that we can externalize that file and allow custom builds that exclude it.
-exports.Circ = Circ;
-exports.Expo = Expo;
-exports.Sine = Sine;
-exports.Bounce = Bounce;
-exports.SteppedEase = SteppedEase;
-exports.Back = Back;
-exports.Elastic = Elastic;
-exports.Strong = Strong;
-exports.Quint = Quint;
-exports.Quart = Quart;
-exports.Cubic = Cubic;
-exports.Quad = Quad;
-exports.Linear = Linear;
-exports.Power4 = Power4;
-exports.Power3 = Power3;
-exports.Power2 = Power2;
-exports.Power1 = Power1;
-exports.Power0 = Power0;
 },{}],"KE4Q":[function(require,module,exports) {
 "use strict";
 
@@ -4583,12 +4517,12 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = exports.checkPrefix = exports._getBBox = exports._createElement = exports.CSSPlugin = void 0;
 var _gsapCore = require("./gsap-core.js");
 /*!
- * CSSPlugin 3.12.2
- * https://greensock.com
+ * CSSPlugin 3.12.5
+ * https://gsap.com
  *
- * Copyright 2008-2023, GreenSock. All rights reserved.
- * Subject to the terms at https://greensock.com/standard-license or for
- * Club GreenSock members, the agreement issued with that membership.
+ * Copyright 2008-2024, GreenSock. All rights reserved.
+ * Subject to the terms at https://gsap.com/standard-license or for
+ * Club GSAP members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
 */
 
@@ -4665,14 +4599,17 @@ var _win,
   _saveStyle = function _saveStyle(property, isNotCSS) {
     var _this = this;
     var target = this.target,
-      style = target.style;
+      style = target.style,
+      cache = target._gsap;
     if (property in _transformProps && style) {
       this.tfm = this.tfm || {};
       if (property !== "transform") {
         property = _propertyAliases[property] || property;
         ~property.indexOf(",") ? property.split(",").forEach(function (a) {
           return _this.tfm[a] = _get(target, a);
-        }) : this.tfm[property] = target._gsap.x ? target._gsap[property] : _get(target, property); // note: scale would map to "scaleX,scaleY", thus we loop and apply them both.
+        }) : this.tfm[property] = cache.x ? cache[property] : _get(target, property); // note: scale would map to "scaleX,scaleY", thus we loop and apply them both.
+
+        property === _transformOriginProp && (this.tfm.zOrigin = cache.zOrigin);
       } else {
         return _propertyAliases.transform.split(",").forEach(function (p) {
           return _saveStyle.call(_this, p, isNotCSS);
@@ -4681,7 +4618,7 @@ var _win,
       if (this.props.indexOf(_transformProp) >= 0) {
         return;
       }
-      if (target._gsap.svg) {
+      if (cache.svg) {
         this.svgo = target.getAttribute("data-svg-origin");
         this.props.push(_transformOriginProp, isNotCSS, "");
       }
@@ -4718,6 +4655,12 @@ var _win,
       i = _reverting();
       if ((!i || !i.isStart) && !style[_transformProp]) {
         _removeIndependentTransforms(style);
+        if (cache.zOrigin && style[_transformOriginProp]) {
+          style[_transformOriginProp] += " " + cache.zOrigin + "px"; // since we're uncaching, we must put the zOrigin back into the transformOrigin so that we can pull it out accurately when we parse again. Otherwise, we'd lose the z portion of the origin since we extract it to protect from Safari bugs.
+
+          cache.zOrigin = 0;
+          cache.renderTransform();
+        }
         cache.uncache = 1; // if it's a startAt that's being reverted in the _initTween() of the core, we don't need to uncache transforms. This is purely a performance optimization.
       }
     }
@@ -4737,17 +4680,17 @@ var _win,
     return saver;
   },
   _supports3D,
-  _createElement = function _createElement(type, ns) {
+  _createElement = exports._createElement = function _createElement(type, ns) {
     var e = _doc.createElementNS ? _doc.createElementNS((ns || "http://www.w3.org/1999/xhtml").replace(/^https/, "http"), type) : _doc.createElement(type); //some servers swap in https for http in the namespace which can break things, making "style" inaccessible.
 
-    return e.style ? e : _doc.createElement(type); //some environments won't allow access to the element's style when created with a namespace in which case we default to the standard createElement() to work around the issue. Also note that when GSAP is embedded directly inside an SVG file, createElement() won't allow access to the style object in Firefox (see https://greensock.com/forums/topic/20215-problem-using-tweenmax-in-standalone-self-containing-svg-file-err-cannot-set-property-csstext-of-undefined/).
+    return e && e.style ? e : _doc.createElement(type); //some environments won't allow access to the element's style when created with a namespace in which case we default to the standard createElement() to work around the issue. Also note that when GSAP is embedded directly inside an SVG file, createElement() won't allow access to the style object in Firefox (see https://gsap.com/forums/topic/20215-problem-using-tweenmax-in-standalone-self-containing-svg-file-err-cannot-set-property-csstext-of-undefined/).
   },
   _getComputedProperty = function _getComputedProperty(target, property, skipPrefixFallback) {
     var cs = getComputedStyle(target);
     return cs[property] || cs.getPropertyValue(property.replace(_capsExp, "-$1").toLowerCase()) || cs.getPropertyValue(property) || !skipPrefixFallback && _getComputedProperty(target, _checkPropPrefix(property) || property, 1) || ""; //css variables may not need caps swapped out for dashes and lowercase.
   },
   _prefixes = "O,Moz,ms,Ms,Webkit".split(","),
-  _checkPropPrefix = function _checkPropPrefix(property, element, preferPrefix) {
+  _checkPropPrefix = exports.checkPrefix = function _checkPropPrefix(property, element, preferPrefix) {
     var e = element || _tempDiv,
       s = e.style,
       i = 5;
@@ -4815,7 +4758,7 @@ var _win,
       }
     }
   },
-  _getBBox = function _getBBox(target) {
+  _getBBox = exports._getBBox = function _getBBox(target) {
     var bounds;
     try {
       bounds = target.getBBox(); //Firefox throws errors if you try calling getBBox() on an SVG element that's not rendered (like in a <symbol> or <defs>). https://bugzilla.mozilla.org/show_bug.cgi?id=612118
@@ -4837,16 +4780,18 @@ var _win,
   //reports if the element is an SVG on which getBBox() actually works
   _removeProperty = function _removeProperty(target, property) {
     if (property) {
-      var style = target.style;
+      var style = target.style,
+        first2Chars;
       if (property in _transformProps && property !== _transformOriginProp) {
         property = _transformProp;
       }
       if (style.removeProperty) {
-        if (property.substr(0, 2) === "ms" || property.substr(0, 6) === "webkit") {
+        first2Chars = property.substr(0, 2);
+        if (first2Chars === "ms" || property.substr(0, 6) === "webkit") {
           //Microsoft and some Webkit browsers don't conform to the standard of capitalizing the first prefix character, so we adjust so that when we prefix the caps with a dash, it's correct (otherwise it'd be "ms-transform" instead of "-ms-transform" for IE9, for example)
           property = "-" + property;
         }
-        style.removeProperty(property.replace(_capsExp, "-$1").toLowerCase());
+        style.removeProperty(first2Chars === "--" ? property : property.replace(_capsExp, "-$1").toLowerCase());
       } else {
         //note: old versions of IE use "removeAttribute()" instead of "removeProperty()"
         style.removeAttribute(property);
@@ -4907,13 +4852,21 @@ var _win,
     if (cache && toPercent && cache.width && horizontal && cache.time === _gsapCore._ticker.time && !cache.uncache) {
       return (0, _gsapCore._round)(curValue / cache.width * amount);
     } else {
-      (toPercent || curUnit === "%") && !_nonStandardLayouts[_getComputedProperty(parent, "display")] && (style.position = _getComputedProperty(target, "position"));
-      parent === target && (style.position = "static"); // like for borderRadius, if it's a % we must have it relative to the target itself but that may not have position: relative or position: absolute in which case it'd go up the chain until it finds its offsetParent (bad). position: static protects against that.
+      if (toPercent && (property === "height" || property === "width")) {
+        // if we're dealing with width/height that's inside a container with padding and/or it's a flexbox/grid container, we must apply it to the target itself rather than the _tempDiv in order to ensure complete accuracy, factoring in the parent's padding.
+        var v = target.style[property];
+        target.style[property] = amount + unit;
+        px = target[measureProperty];
+        v ? target.style[property] = v : _removeProperty(target, property);
+      } else {
+        (toPercent || curUnit === "%") && !_nonStandardLayouts[_getComputedProperty(parent, "display")] && (style.position = _getComputedProperty(target, "position"));
+        parent === target && (style.position = "static"); // like for borderRadius, if it's a % we must have it relative to the target itself but that may not have position: relative or position: absolute in which case it'd go up the chain until it finds its offsetParent (bad). position: static protects against that.
 
-      parent.appendChild(_tempDiv);
-      px = _tempDiv[measureProperty];
-      parent.removeChild(_tempDiv);
-      style.position = "absolute";
+        parent.appendChild(_tempDiv);
+        px = _tempDiv[measureProperty];
+        parent.removeChild(_tempDiv);
+        style.position = "absolute";
+      }
       if (horizontal && toPercent) {
         cache = (0, _gsapCore._getCache)(parent);
         cache.time = _gsapCore._ticker.time;
@@ -4940,23 +4893,21 @@ var _win,
         value = _specialProps[property] && _specialProps[property](target, property, unit) || _getComputedProperty(target, property) || (0, _gsapCore._getProperty)(target, property) || (property === "opacity" ? 1 : 0); // note: some browsers, like Firefox, don't report borderRadius correctly! Instead, it only reports every corner like  borderTopLeftRadius
       }
     }
-
     return unit && !~(value + "").trim().indexOf(" ") ? _convertToUnit(target, property, value, unit) + unit : value;
   },
   _tweenComplexCSSString = function _tweenComplexCSSString(target, prop, start, end) {
     // note: we call _tweenComplexCSSString.call(pluginInstance...) to ensure that it's scoped properly. We may call it from within a plugin too, thus "this" would refer to the plugin.
     if (!start || start === "none") {
-      // some browsers like Safari actually PREFER the prefixed property and mis-report the unprefixed value like clipPath (BUG). In other words, even though clipPath exists in the style ("clipPath" in target.style) and it's set in the CSS properly (along with -webkit-clip-path), Safari reports clipPath as "none" whereas WebkitClipPath reports accurately like "ellipse(100% 0% at 50% 0%)", so in this case we must SWITCH to using the prefixed property instead. See https://greensock.com/forums/topic/18310-clippath-doesnt-work-on-ios/
+      // some browsers like Safari actually PREFER the prefixed property and mis-report the unprefixed value like clipPath (BUG). In other words, even though clipPath exists in the style ("clipPath" in target.style) and it's set in the CSS properly (along with -webkit-clip-path), Safari reports clipPath as "none" whereas WebkitClipPath reports accurately like "ellipse(100% 0% at 50% 0%)", so in this case we must SWITCH to using the prefixed property instead. See https://gsap.com/forums/topic/18310-clippath-doesnt-work-on-ios/
       var p = _checkPropPrefix(prop, target, 1),
         s = p && _getComputedProperty(target, p, 1);
       if (s && s !== start) {
         prop = p;
         start = s;
       } else if (prop === "borderColor") {
-        start = _getComputedProperty(target, "borderTopColor"); // Firefox bug: always reports "borderColor" as "", so we must fall back to borderTopColor. See https://greensock.com/forums/topic/24583-how-to-return-colors-that-i-had-after-reverse/
+        start = _getComputedProperty(target, "borderTopColor"); // Firefox bug: always reports "borderColor" as "", so we must fall back to borderTopColor. See https://gsap.com/forums/topic/24583-how-to-return-colors-that-i-had-after-reverse/
       }
     }
-
     var pt = new _gsapCore.PropTween(this._pt, target.style, prop, 0, 1, _gsapCore._renderComplexString),
       index = 0,
       matchIndex = 0,
@@ -4978,9 +4929,10 @@ var _win,
 
     end += "";
     if (end === "auto") {
+      startValue = target.style[prop];
       target.style[prop] = end;
       end = _getComputedProperty(target, prop) || end;
-      target.style[prop] = start;
+      startValue ? target.style[prop] = startValue : _removeProperty(target, prop);
     }
     a = [start, end];
     (0, _gsapCore._colorStringFilter)(a); // pass an array with the starting and ending values and let the filter do whatever it needs to the values. If colors are found, it returns true and then we must match where the color shows up order-wise because for things like boxShadow, sometimes the browser provides the computed values with the color FIRST, but the user provides it with the color LAST, so flip them if necessary. Same for drop-shadow().
@@ -5159,7 +5111,7 @@ var _win,
     		}
     	}
     	cache.classPT = plugin._pt = new PropTween(plugin._pt, target, "className", 0, 0, _renderClassName, data, 0, -11);
-    	if (style.cssText !== cssText) { //only apply if things change. Otherwise, in cases like a background-image that's pulled dynamically, it could cause a refresh. See https://greensock.com/forums/topic/20368-possible-gsap-bug-switching-classnames-in-chrome/.
+    	if (style.cssText !== cssText) { //only apply if things change. Otherwise, in cases like a background-image that's pulled dynamically, it could cause a refresh. See https://gsap.com/forums/topic/20368-possible-gsap-bug-switching-classnames-in-chrome/.
     		style.cssText = cssText; //we recorded cssText before we swapped classes and ran _getAllStyles() because in cases when a className tween is overwritten, we remove all the related tweening properties from that class change (otherwise class-specific stuff can't override properties we've directly set on the target's style object due to specificity).
     	}
     	_parseTransform(target, true); //to clear the caching of transforms
@@ -5210,7 +5162,6 @@ var _win,
         nextSibling = target.nextElementSibling;
         _docElement.appendChild(target); //we must add it to the DOM in order to get values properly
       }
-
       matrix = _getComputedTransformMatrixAsArray(target);
       temp ? style.display = temp : _removeProperty(target, "display");
       if (addedToDOM) {
@@ -5242,13 +5193,16 @@ var _win,
     if (!originIsAbsolute) {
       bounds = _getBBox(target);
       xOrigin = bounds.x + (~originSplit[0].indexOf("%") ? xOrigin / 100 * bounds.width : xOrigin);
-      yOrigin = bounds.y + (~(originSplit[1] || originSplit[0]).indexOf("%") ? yOrigin / 100 * bounds.height : yOrigin);
+      yOrigin = bounds.y + (~(originSplit[1] || originSplit[0]).indexOf("%") ? yOrigin / 100 * bounds.height : yOrigin); // if (!("xOrigin" in cache) && (xOrigin || yOrigin)) { // added in 3.12.3, reverted in 3.12.4; requires more exploration
+      // 	xOrigin -= bounds.x;
+      // 	yOrigin -= bounds.y;
+      // }
     } else if (matrix !== _identity2DMatrix && (determinant = a * d - b * c)) {
       //if it's zero (like if scaleX and scaleY are zero), skip it to avoid errors with dividing by zero.
       x = xOrigin * (d / determinant) + yOrigin * (-c / determinant) + (c * ty - d * tx) / determinant;
       y = xOrigin * (-b / determinant) + yOrigin * (a / determinant) - (a * ty - b * tx) / determinant;
       xOrigin = x;
-      yOrigin = y;
+      yOrigin = y; // theory: we only had to do this for smoothing and it assumes that the previous one was not originIsAbsolute.
     }
     if (smooth || smooth !== false && cache.smooth) {
       tx = xOrigin - xOriginOld;
@@ -5336,7 +5290,6 @@ var _win,
       } else {
         t1 = !uncache && target.getAttribute("data-svg-origin"); //  Remember, to work around browser inconsistencies we always force SVG elements' transformOrigin to 0,0 and offset the translation accordingly.
       }
-
       _applySVGOrigin(target, t1 || origin, !!t1 || cache.originIsAbsolute, cache.smooth !== false, matrix);
     }
     xOrigin = cache.xOrigin || 0;
@@ -5458,7 +5411,7 @@ var _win,
     cache.skewX = skewX + deg;
     cache.skewY = skewY + deg;
     cache.transformPerspective = perspective + px;
-    if (cache.zOrigin = parseFloat(origin.split(" ")[2]) || 0) {
+    if (cache.zOrigin = parseFloat(origin.split(" ")[2]) || !uncache && cache.zOrigin || 0) {
       style[_transformOriginProp] = _firstTwoOnly(origin);
     }
     cache.xOffset = cache.yOffset = 0;
@@ -5699,9 +5652,7 @@ var _win,
     }
     _assign(endCache, startCache);
   }; // handle splitting apart padding, margin, borderWidth, and borderRadius into their 4 components. Firefox, for example, won't report borderRadius correctly - it will only do borderTopLeftRadius and the other corners. We also want to handle paddingTop, marginLeft, borderRightWidth, etc.
-exports._getBBox = _getBBox;
-exports.checkPrefix = _checkPropPrefix;
-exports._createElement = _createElement;
+
 (0, _gsapCore._forEachName)("padding,margin,Width,Radius", function (name, index) {
   var t = "Top",
     r = "Right",
@@ -5728,7 +5679,7 @@ exports._createElement = _createElement;
     plugin.init(target, vars, tween);
   };
 });
-var CSSPlugin = {
+var CSSPlugin = exports.default = exports.CSSPlugin = {
   name: "css",
   register: _initCore,
   targetTest: function targetTest(target) {
@@ -5798,7 +5749,7 @@ var CSSPlugin = {
           // in case someone hard-codes a complex value as the start, like top: "calc(2vh / 2)". Without this, it'd use the computed value (always in px)
           startValue = typeof startAt[p] === "function" ? startAt[p].call(tween, index, target, targets) : startAt[p];
           (0, _gsapCore._isString)(startValue) && ~startValue.indexOf("random(") && (startValue = (0, _gsapCore._replaceRandom)(startValue));
-          (0, _gsapCore.getUnit)(startValue + "") || (startValue += _gsapCore._config.units[p] || (0, _gsapCore.getUnit)(_get(target, p)) || ""); // for cases when someone passes in a unitless value like {x: 100}; if we try setting translate(100, 0px) it won't work.
+          (0, _gsapCore.getUnit)(startValue + "") || startValue === "auto" || (startValue += _gsapCore._config.units[p] || (0, _gsapCore.getUnit)(_get(target, p)) || ""); // for cases when someone passes in a unitless value like {x: 100}; if we try setting translate(100, 0px) it won't work.
 
           (startValue + "").charAt(1) === "=" && (startValue = _get(target, p)); // can't work with relative values
         } else {
@@ -5836,7 +5787,6 @@ var CSSPlugin = {
 
             transformPropTween.dep = 1; //flag it as dependent so that if things get killed/overwritten and this is the only PropTween left, we can safely kill the whole tween.
           }
-
           if (p === "scale") {
             this._pt = new _gsapCore.PropTween(this._pt, cache, "scaleY", cache.scaleY, (relative ? (0, _gsapCore._parseRelative)(cache.scaleY, relative + endNum) : endNum) - cache.scaleY || 0, _renderCSSProp);
             this._pt.u = 0;
@@ -5928,7 +5878,6 @@ var CSSPlugin = {
     _getMatrix: _getMatrix
   }
 };
-exports.default = exports.CSSPlugin = CSSPlugin;
 _gsapCore.gsap.utils.checkPrefix = _checkPropPrefix;
 _gsapCore.gsap.core.getStyleSaver = _getStyleSaver;
 (function (positionAndScale, rotation, others, aliases) {
@@ -6090,11 +6039,9 @@ Object.defineProperty(exports, "TweenLite", {
 exports.gsap = exports.default = exports.TweenMax = void 0;
 var _gsapCore = require("./gsap-core.js");
 var _CSSPlugin = require("./CSSPlugin.js");
-var gsapWithCSS = _gsapCore.gsap.registerPlugin(_CSSPlugin.CSSPlugin) || _gsapCore.gsap,
+var gsapWithCSS = exports.default = exports.gsap = _gsapCore.gsap.registerPlugin(_CSSPlugin.CSSPlugin) || _gsapCore.gsap,
   // to protect from tree shaking
-  TweenMaxWithCSS = gsapWithCSS.core.Tween;
-exports.TweenMax = TweenMaxWithCSS;
-exports.default = exports.gsap = gsapWithCSS;
+  TweenMaxWithCSS = exports.TweenMax = gsapWithCSS.core.Tween;
 },{"./gsap-core.js":"P74P","./CSSPlugin.js":"KE4Q"}],"V1wt":[function(require,module,exports) {
 "use strict";
 
@@ -6108,8 +6055,8 @@ function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 // Track the mouse position
 var mouse = {
   x: 0,
@@ -6118,7 +6065,7 @@ var mouse = {
 window.addEventListener('mousemove', function (ev) {
   return mouse = (0, _utils.getMousePos)(ev);
 });
-var Cursor = /*#__PURE__*/function () {
+var Cursor = exports.default = /*#__PURE__*/function () {
   function Cursor(el) {
     var _this = this;
     _classCallCheck(this, Cursor);
@@ -6145,7 +6092,6 @@ var Cursor = /*#__PURE__*/function () {
       }
       //opacity: {previous: 1, current: 1, amt: 0.1}
     };
-
     this.onMouseMoveEv = function () {
       _this.renderedStyles.tx.previous = _this.renderedStyles.tx.current = mouse.x - _this.bounds.width / 2;
       _this.renderedStyles.ty.previous = _this.renderedStyles.ty.previous = mouse.y - _this.bounds.height / 2;
@@ -6192,7 +6138,6 @@ var Cursor = /*#__PURE__*/function () {
   }]);
   return Cursor;
 }();
-exports.default = Cursor;
 },{"gsap":"f8Z0","./utils":"PJAY"}],"yZcy":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
@@ -8731,7 +8676,6 @@ var _default$2 = /*#__PURE__*/function (_Core) {
             return section.el == candidate;
           }); // finally find the section that matches the candidate
         });
-
         var parentSectionOffset = 0;
         if (parentSection) {
           parentSectionOffset = getTranslate(parentSection)[this.directionAxis]; // We got a parent section, store it's current offset to remove it later
@@ -8841,7 +8785,7 @@ var _default$2 = /*#__PURE__*/function (_Core) {
   }]);
   return _default;
 }(_default);
-var Smooth = /*#__PURE__*/function () {
+var Smooth = exports.Smooth = /*#__PURE__*/function () {
   function Smooth() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     _classCallCheck(this, Smooth);
@@ -8919,8 +8863,7 @@ var Smooth = /*#__PURE__*/function () {
   }]);
   return Smooth;
 }();
-exports.Smooth = Smooth;
-var Native = /*#__PURE__*/function () {
+var Native = exports.Native = /*#__PURE__*/function () {
   function Native() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     _classCallCheck(this, Native);
@@ -8989,9 +8932,7 @@ var Native = /*#__PURE__*/function () {
   }]);
   return Native;
 }();
-exports.Native = Native;
-var _default2 = Smooth;
-exports.default = _default2;
+var _default2 = exports.default = Smooth;
 },{}],"p45i":[function(require,module,exports) {
 "use strict";
 
